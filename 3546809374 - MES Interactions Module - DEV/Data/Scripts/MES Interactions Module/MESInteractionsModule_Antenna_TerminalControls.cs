@@ -56,7 +56,7 @@ namespace PEPCO
             }
             {
                 var c = MyAPIGateway.TerminalControls.CreateControl<IMyTerminalControlLabel, IMyRadioAntenna>(IdPrefix + "MainLabel");
-                c.Label = MyStringId.GetOrCompute("Ares at War communications");
+                c.Label = MyStringId.GetOrCompute("Interactions");
                 c.SupportsMultipleBlocks = false;
                 c.Visible = CustomVisibleCondition;
 
