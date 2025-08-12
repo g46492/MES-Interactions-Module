@@ -1,0 +1,10 @@
+is_global = true
+build_property.ProjectDir = C:\Users\sebas\source\repos\PepperJackExA\PEP-CO-space-engineer-mods\X - MES Interactions - DEV\Data\Scripts\AaW Radio Beacon\
+build_property.ProjectDir = C:\Users\sebas\source\repos\PepperJackExA\PEP-CO-space-engineer-mods\X - MES Interactions - DEV\Data\Scripts\AaW Radio Beacon\
+build_property.Mdk-IgnorePaths = **\*.debug.cs|obj\**\*
+build_property.RootNamespace = MES_Interactions
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 
+build_property.EnableCodeStyleSeverity = 

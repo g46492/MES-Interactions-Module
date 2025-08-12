@@ -1,0 +1,72 @@
+<!--This is just an example. Create your own destiny!-->
+<MESInteractions>
+	<MESInteraction>
+		<CommandProfileIds>
+		<CommandProfileId>CallHelp002</CommandProfileId>
+		</CommandProfileIds>
+		<!--This is the MES CommandProfileId sent to MES. If you don't know what it is, I can't help you.-->
+		<AntennaCall>Request Help</AntennaCall>
+		<!--This is added to the Antenna Terminal under "Communications Options" and can be created as an action button in the toolbar.-->
+		<AntennaCallTooltip>May result in help from the receiver</AntennaCallTooltip>
+		<!--This is shown in the Antenna Terminal when you hover over "Communications Options". Make it useful please.-->
+		<RadioCalls>
+			<!--This is sent to the chat window. A random call from below is selected. Minumum one RadioCall is required.-->
+			<RadioCall>Help me!</RadioCall>
+			<RadioCall>I'm a damsel in distress!</RadioCall>
+			<RadioCall>I'm hungry!</RadioCall>
+			<RadioCall>Grrrrr!</RadioCall>
+		</RadioCalls>
+	</MESInteraction>
+	<MESInteraction>
+		<CommandProfileIds>
+		<CommandProfileId>CallNames</CommandProfileId>
+		<CommandProfileId>CallNames2</CommandProfileId>
+		</CommandProfileIds>
+		<AntennaCall>Be impolite</AntennaCall>
+		<AntennaCallTooltip>May result in you getting your face washed.</AntennaCallTooltip>
+		<RadioCalls>
+			<RadioCall>You're flying like a blind drone, rookie!</RadioCall>
+			<RadioCall>Nice landing—were you trying to kiss that asteroid?</RadioCall>
+			<RadioCall>Your aim's as good as a broken turret.</RadioCall>
+			<RadioCall>Did you install your nav computer upside down?</RadioCall>
+			<RadioCall>You're more useless than a solar panel in an eclipse!</RadioCall>
+			<RadioCall>Keep talking, flyboy. Your ego's taking up bandwidth.</RadioCall>
+			<RadioCall>I've seen cargo haulers with better reflexes!</RadioCall>
+			<RadioCall>They should revoke your pilot license retroactively.</RadioCall>
+			<RadioCall>You're as stealthy as a neon meteor!</RadioCall>
+			<RadioCall>Do you always fly like your thrusters are drunk?</RadioCall>
+		</RadioCalls>
+	</MESInteraction>
+	<!--Duplicate CommandProfileIds will result in different options in the antenna terminal and actions-->
+	<MESInteraction>
+		<CommandProfileIds>
+		<CommandProfileId>CallNames</CommandProfileId>
+		</CommandProfileIds>
+		<AntennaCall>Be impolite in a different way</AntennaCall>
+		<AntennaCallTooltip>May result in you getting your face washed repeatedly.</AntennaCallTooltip>
+		<RadioCalls>
+			<RadioCall>Who taught you to dock—an angry fridge?</RadioCall>
+			<RadioCall>If brains were fuel, you'd be grounded indefinitely.</RadioCall>
+			<RadioCall>You're the reason autopilot was invented.</RadioCall>
+			<RadioCall>I've seen asteroids make sharper turns.</RadioCall>
+			<RadioCall>You fly like gravity's trying to break up with you.</RadioCall>
+			<RadioCall>This isn't a demolition derby... unless you're hosting one?</RadioCall>
+			<RadioCall>Your comms are clearer than your judgment.</RadioCall>
+			<RadioCall>Did your training manual self-destruct on page one?</RadioCall>
+			<RadioCall>Your formation flying is more like free-form flailing.</RadioCall>
+			<RadioCall>You just buzzed a mining rig... hope you waved goodbye to your reputation.</RadioCall>
+			<RadioCall>You're making space debris jealous with those maneuvers.</RadioCall>
+			<RadioCall>Every time you launch, insurance rates go up.</RadioCall>
+			<RadioCall>You're flying like the ship wants a restraining order.</RadioCall>
+			<RadioCall>If precision were cargo, you'd be flying empty.</RadioCall>
+		</RadioCalls>
+	</MESInteraction>
+	<!--This is an invalid config and will be rejected-->
+	<MESInteraction>
+		<CommandProfileIds>CallNames</CommandProfileIds>
+		<AntennaCall>Be impolite</AntennaCall>
+		<AntennaCallTooltip>May result in you getting your face washed.</AntennaCallTooltip>
+		<RadioCalls>
+		</RadioCalls>
+	</MESInteraction>
+</MESInteractions>
