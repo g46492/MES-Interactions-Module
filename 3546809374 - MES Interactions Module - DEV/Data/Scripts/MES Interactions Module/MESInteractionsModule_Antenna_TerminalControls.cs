@@ -1,4 +1,4 @@
-﻿using Sandbox.Game.Localization;
+using Sandbox.Game.Localization;
 using Sandbox.ModAPI;
 using Sandbox.ModAPI.Interfaces.Terminal;
 using System;
@@ -65,7 +65,7 @@ namespace PEPCO
 
             {
                 var c = MyAPIGateway.TerminalControls.CreateControl<IMyTerminalControlListbox, IMyRadioAntenna>(IdPrefix + "CallOptionsListBox");
-                c.Title = MyStringId.GetOrCompute("Communications Options");
+                c.Title = MyStringId.GetOrCompute("Interaction Options");
                 //c.Tooltip = MyStringId.GetOrCompute("This does some stuff!"); // Not going to use tooltip here, since I want my snarky remarks to be visible in the listbox
                 c.SupportsMultipleBlocks = true;
                 c.Visible = CustomVisibleCondition;
