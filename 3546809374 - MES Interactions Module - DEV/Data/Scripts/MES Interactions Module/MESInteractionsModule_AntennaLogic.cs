@@ -78,7 +78,8 @@ namespace PEPCO
                     var randomCall = _rand.Next(0, RadioCalls.Count);
                     string callString = RadioCalls[randomCall];
 
-                    MyAPIGateway.Utilities.ShowMessage(playerName, $"{callString}");
+                    //MyAPIGateway.Utilities.ShowMessage(playerName, $"{callString}"); -> This is not needed, we send the call to all players below
+                    Mod.SendInteraction(antennaPosition, antennaRadius, playerName, callString);
                 }
                 // Send the command to the MES API
                 MESInteractions_Session.SpawnerAPI.SendBehaviorCommand(commandProfileIds, antennaPosition, "", antennaRadius, antennaOwner);

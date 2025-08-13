@@ -1,4 +1,5 @@
 ﻿using Digi;
+using Digi.NetworkLib;
 using ModularEncountersSystems.API;
 using Sandbox.Game;
 using Sandbox.ModAPI;
@@ -7,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using VRage.Game.Components;
+using VRage.Utils;
+using VRageMath;
 
 namespace PEPCO
 {
@@ -23,11 +26,22 @@ namespace PEPCO
         // All loaded interactions from all mods that provide a config
         public readonly List<MesInteraction> Interactions = new List<MesInteraction>();
 
+        public const ushort NetworkId = (ushort)(3547952468 % ushort.MaxValue); // Using the prod steam id
+
+        public Network Net;
+
+        MESInteractions_NetworkPackage MESInteractionsPacket;
+
         public override void LoadData()
         {
             Instance = this;
             SpawnerAPI = new MESApi();
             CollectConfig();
+
+            Net = new Network(NetworkId, ModContext.ModName);
+            //Net.SerializeTest = true;
+            MESInteractionsPacket = new MESInteractions_NetworkPackage();
+            MESInteractions_NetworkPackage.OnReceive += MESInteractions_OnReceive;
         }
 
         protected override void UnloadData()
@@ -35,6 +49,65 @@ namespace PEPCO
             Interactions.Clear();
             SpawnerAPI = null;
             Instance = null;
+            MESInteractions_NetworkPackage.OnReceive -= MESInteractions_OnReceive;
+        }
+
+        public void SendInteraction(Vector3D position, float antennaRange, string senderName, string radioCall)
+        {
+            if (MyAPIGateway.Session?.Player == null)
+            {
+                Log.Error("Cannot send MESInteractions packet without a player context.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(radioCall))
+            {
+                Log.Error("Radio call cannot be null or empty.");
+                return;
+            }
+            MESInteractionsPacket.Setup(position, antennaRange, senderName, radioCall);
+            Net.SendToServer(MESInteractionsPacket);
+            if (_debug)
+            {
+                Log.Info($"Sent MESInteractions packet from {senderName} with call: {radioCall} at position {position} and range {antennaRange}");
+            }
+        }
+
+        void MESInteractions_OnReceive(MESInteractions_NetworkPackage packet, ref PacketInfo packetInfo, ulong senderSteamId)
+        {
+            if (_debug)
+            {
+                Log.Info($"Received MESInteractions packet from {packet.SenderName} with call: {packet.RadioCall} at position {packet.Position} and range {packet.AntennaRange}");
+            }
+
+            if (packet == null || string.IsNullOrWhiteSpace(packet.RadioCall))
+            {
+                Log.Error("Received an invalid MESInteractions packet.");
+                return;
+            }
+
+            // This is called on everyone that receives the packet.
+            var player = MyAPIGateway.Session.Player;
+            if (player != null)
+            {
+                
+                var playerPosition = player.GetPosition();
+                var distance = Vector3D.Distance(playerPosition, packet.Position);
+
+                if (distance <= packet.AntennaRange)  // Show the radio call to the player if within range
+                {
+                    MyAPIGateway.Utilities.ShowMessage(packet.SenderName, $"{packet.RadioCall}");
+                }
+                else
+                {
+                    if (_debug) Log.Info($"Player {player.DisplayName} is out of range for the radio call: {packet.RadioCall}");
+                }
+            }
+
+
+            // Get the local player and test the distance to the packet's position against the antenna range
+            packetInfo.Relay = RelayMode.ToEveryone;
+            
+
         }
 
         private void CollectConfig()
