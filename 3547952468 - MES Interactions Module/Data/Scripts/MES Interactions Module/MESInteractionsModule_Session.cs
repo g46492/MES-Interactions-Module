@@ -18,7 +18,7 @@ namespace PEPCO
         public static MESApi SpawnerAPI;
 
         // Toggle for logging; set to false in release builds
-        public static readonly bool _debug = true;
+        public static readonly bool _debug = false;
 
         // All loaded interactions from all mods that provide a config
         public readonly List<MesInteraction> Interactions = new List<MesInteraction>();
