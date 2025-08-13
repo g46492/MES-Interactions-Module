@@ -20,7 +20,7 @@ namespace PEPCO
 
     public static class MESAntenna_TerminalControls
     {
-        const string IdPrefix = "MESAntenna";
+        const string IdPrefix = "MESInteractions";
 
         static bool Done = false;
 
@@ -64,7 +64,7 @@ namespace PEPCO
             }
 
             {
-                var c = MyAPIGateway.TerminalControls.CreateControl<IMyTerminalControlListbox, IMyRadioAntenna>(IdPrefix + "CallOptionsListBox");
+                var c = MyAPIGateway.TerminalControls.CreateControl<IMyTerminalControlListbox, IMyRadioAntenna>(IdPrefix + "InteractionsOptionsListBox");
                 c.Title = MyStringId.GetOrCompute("Interaction Options");
                 //c.Tooltip = MyStringId.GetOrCompute("This does some stuff!"); // Not going to use tooltip here, since I want my snarky remarks to be visible in the listbox
                 c.SupportsMultipleBlocks = true;
@@ -171,7 +171,16 @@ namespace PEPCO
                 // The status of the action, shown in toolbar icon text and can also be read by mods or PBs.
                 a.Writer = (b, sb) =>
                 {
-                    sb.Append(item.AntennaCall.Replace(" ", "\n"));
+                    var lines = item.AntennaCall
+                        .Replace(" ", "\n")
+                        .Split('\n');
+
+                    for (int l = 0; i < Math.Min(3, lines.Length); l++)
+                    {
+                        sb.Append(lines[l]);
+                        if (l < 2 && l < lines.Length - 1)
+                            sb.Append('\n');
+                    }
                 };
 
                 // Need to amend the custom visible condition to the action based on available list in AnteannaLogic.cs

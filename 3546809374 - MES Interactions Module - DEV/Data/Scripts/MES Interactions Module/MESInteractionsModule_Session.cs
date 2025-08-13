@@ -148,13 +148,13 @@ namespace PEPCO
             bool hasIds = interaction.CommandProfileIds != null &&
                           interaction.CommandProfileIds.Any(id => !string.IsNullOrWhiteSpace(id));
 
-            bool hasCalls = interaction.RadioCalls != null &&
-                            interaction.RadioCalls.Any(rc => !string.IsNullOrWhiteSpace(rc));
+            //bool hasCalls = interaction.RadioCalls != null &&
+            //                interaction.RadioCalls.Any(rc => !string.IsNullOrWhiteSpace(rc));
 
             return hasIds
                 && !string.IsNullOrWhiteSpace(interaction.AntennaCall)
-                && !string.IsNullOrWhiteSpace(interaction.AntennaCallTooltip)
-                && hasCalls;
+                && !string.IsNullOrWhiteSpace(interaction.AntennaCallTooltip);
+                //&& hasCalls;
         }
 
         // Optional helpers
