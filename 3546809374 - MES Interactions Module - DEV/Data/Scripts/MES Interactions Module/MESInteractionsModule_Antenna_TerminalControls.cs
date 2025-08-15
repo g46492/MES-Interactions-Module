@@ -175,7 +175,7 @@ namespace PEPCO
                         .Replace(" ", "\n")
                         .Split('\n');
 
-                    for (int l = 0; i < Math.Min(3, lines.Length); l++)
+                    for (int l = 0; l < Math.Min(3, lines.Length); l++)
                     {
                         sb.Append(lines[l]);
                         if (l < 2 && l < lines.Length - 1)
