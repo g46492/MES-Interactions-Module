@@ -1,5 +1,6 @@
 ﻿using Digi.NetworkLib;
 using ProtoBuf;
+using System.Collections.Generic;
 using VRageMath;
 
 namespace PEPCO
@@ -8,7 +9,7 @@ namespace PEPCO
     [ProtoContract]
     public class MESInteractions_NetworkPackage : PacketBase
     {
-        public MESInteractions_NetworkPackage() { } 
+        public MESInteractions_NetworkPackage() { }
 
         [ProtoMember(1)]
         public Vector3D Position;
@@ -22,12 +23,18 @@ namespace PEPCO
         [ProtoMember(4)]
         public string RadioCall;
 
+        [ProtoMember(5)]
+        public List<string> CommandProfileIds = new List<string>();
 
-        public void Setup(Vector3D position, float antennaRange, string senderName, string radioCall)
+        [ProtoMember(6)]
+        public long AntennaOwnerID;
+
+        public void Setup(List<string> commandProfileIds, Vector3D position, float antennaRange, long antennaOwnerID, string senderName, string radioCall)
         {
-            
+            CommandProfileIds = commandProfileIds;
             Position = position;
             AntennaRange = antennaRange;
+            AntennaOwnerID = antennaOwnerID;
             SenderName = senderName; 
             RadioCall = radioCall; 
         }
