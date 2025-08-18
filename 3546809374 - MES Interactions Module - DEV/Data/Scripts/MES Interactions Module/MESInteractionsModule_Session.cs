@@ -27,7 +27,7 @@ namespace PEPCO
         // All loaded interactions from all mods that provide a config
         public readonly Dictionary<string, MesInteraction> Interactions = new Dictionary<string, MesInteraction>();
 
-        public static readonly string version = "1755283354";
+        public static readonly string version = "1755513026";
 
         public const ushort NetworkId = (ushort)(3547952468 % ushort.MaxValue); // Using the prod steam id
 
