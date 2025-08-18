@@ -1,6 +1,7 @@
 <!--This is just an example. Create your own destiny!-->
 <MESInteractions>
 	<MESInteraction>
+	<MESInteractionId>MyMESID</MESInteractionId> <!--Please make this unique-->
 		<CommandProfileIds>
 		<CommandProfileId>CallHelp002</CommandProfileId>
 		</CommandProfileIds>
@@ -18,6 +19,7 @@
 		</RadioCalls>
 	</MESInteraction>
 	<MESInteraction>
+	<MESInteractionId>MyMESIDNo2</MESInteractionId> <!--Please make this unique-->
 		<CommandProfileIds>
 		<CommandProfileId>CallNames</CommandProfileId>
 		<CommandProfileId>CallNames2</CommandProfileId>
@@ -39,6 +41,7 @@
 	</MESInteraction>
 	<!--Duplicate CommandProfileIds will result in different options in the antenna terminal and actions-->
 	<MESInteraction>
+		<MESInteractionId>MyMESID3</MESInteractionId> <!--Please make this unique-->
 		<CommandProfileIds>
 		<CommandProfileId>CallNames</CommandProfileId>
 		</CommandProfileIds>
@@ -59,14 +62,6 @@
 			<RadioCall>Every time you launch, insurance rates go up.</RadioCall>
 			<RadioCall>You're flying like the ship wants a restraining order.</RadioCall>
 			<RadioCall>If precision were cargo, you'd be flying empty.</RadioCall>
-		</RadioCalls>
-	</MESInteraction>
-	<!--This is an invalid config and will be rejected-->
-	<MESInteraction>
-		<CommandProfileIds>CallNames</CommandProfileIds>
-		<AntennaCall>Be impolite</AntennaCall>
-		<AntennaCallTooltip>May result in you getting your face washed.</AntennaCallTooltip>
-		<RadioCalls>
 		</RadioCalls>
 	</MESInteraction>
 </MESInteractions>
