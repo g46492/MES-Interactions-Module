@@ -27,7 +27,7 @@ namespace PEPCO
         // All loaded interactions from all mods that provide a config
         public readonly Dictionary<string, MesInteraction> Interactions = new Dictionary<string, MesInteraction>();
 
-        public static readonly string version = "1755513026";
+        public static readonly string version = "1755625324";
 
         public const ushort NetworkId = (ushort)(3547952468 % ushort.MaxValue); // Using the prod steam id
 
@@ -63,24 +63,24 @@ namespace PEPCO
             MESInteractions_NetworkPackage.OnReceive -= MESInteractions_OnReceive;
         }
 
-        public void HandleMESInteraction(string MESInteractionId, IMyRadioAntenna antenna)
+        public void HandleMESInteraction(string interactionId, IMyRadioAntenna antenna)
         {
             try
             {
 
-                if (string.IsNullOrWhiteSpace(MESInteractionId)) // Check if the index is valid
+                if (string.IsNullOrWhiteSpace(interactionId)) // Check if the index is valid
                 {
-                    Log.Error($"Error: Invalid interaction index. value: {MESInteractionId}");
+                    Log.Error($"Error: Invalid interaction index. value: {interactionId}");
                     return;
                 }
 
                 if (antenna.Enabled == false || antenna.EnableBroadcasting == false || antenna.OwnerId == 0) return; // No owner, do nothing, no broadcasting, no interaction
 
-                var modInteraction = Interactions[MESInteractionId];
+                var modInteraction = Interactions[interactionId];
 
                 if (modInteraction == null) // Check if the interaction exists
                 {
-                    Log.Error($"Error: No interaction found for index: {MESInteractionId}");
+                    Log.Error($"Error: No interaction found for index: {interactionId}");
                     return;
                 }
 
@@ -109,7 +109,7 @@ namespace PEPCO
 
                 if (_debug)
                 {
-                    Log.Info($"Sending MESInteractions packet with commandProfileIds: {commandProfileIds}\n" +
+                    Log.Info($"Sending MESInteractions packet with commandProfileIds: {string.Join(";", commandProfileIds)}\n" +
                         $"Antenna position: {antennaPosition}\n" +
                         $"Antenna radius: {antennaRadius}\n" +
                         $"Antenna owner: {antennaOwner}\n" +

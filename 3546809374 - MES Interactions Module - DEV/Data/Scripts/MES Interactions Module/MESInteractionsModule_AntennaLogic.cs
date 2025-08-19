@@ -36,9 +36,18 @@ namespace PEPCO
         }
 
 
-        public void CallMESInteraction(string index)
+        public void CallMESInteraction(string interactionId)
         {
-            Mod.HandleMESInteraction(index, _antenna);
+            if (_antenna.Enabled == false)
+            {
+                _antenna.Enabled = true;
+            }
+            if (_antenna.EnableBroadcasting == false)
+            {
+                _antenna.EnableBroadcasting = true;
+            }
+
+            Mod.HandleMESInteraction(interactionId, _antenna);
 
         }
 
